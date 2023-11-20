@@ -5,8 +5,7 @@ import com.api.crud.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
@@ -24,15 +23,19 @@ public class AnimeController {
     @Autowired
     private GenreService genreService;
 
-    @RequestMapping({"", "/", "index"})
+    @GetMapping({"", "/", "index"})
     public String inicio(Model model) {
-        cargarInfo();
-        List<Anime> animes = animeService.getAnimesById(1L);
+        List<Anime> animes = animeService.getAll();
         model.addAttribute("animes", animes);
         return "index";
     }
 
-    private void cargarInfo() {
-        long id = 11L;
+    @GetMapping("/{id}")
+    public String element(@PathVariable long id, Model model) {
+        Anime anime = animeService.getAnimeById(id);
+        model.addAttribute("anime", anime);
+
+        //  ya se obtiene el anime, faltan op, end y genres
+        return "anime";
     }
 }

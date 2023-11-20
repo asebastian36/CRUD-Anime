@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>AnimeTracker</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Outfit:wght@400;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
 </head>
 <body>
 <header>
@@ -11,15 +17,14 @@
     </a>
 </header>
 
-<div>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Search</a>
-        <a href="#">Setting</a>
+<div class="nav-bg">
+    <nav class="navegacion">
+        <a class="navegacion__enlace" href="#">Add</a>
+        <a class="navegacion__enlace" href="#">Search</a>
     </nav>
 </div>
 
-<main>
+<main class="contenedor">
     <div>
         <div>
             <h3>List of Animes</h3>
@@ -28,18 +33,26 @@
                 <p>Empty</p>
             </div>
 
-            <div th:if="${!animes.isEmpty()}">
-                <div th:each="currentAnime : ${animes}">
-                    <img th:src="${currentAnime.image}" th:alt="${currentAnime.name}">
-                    <a href="#">Edit</a>
-                    <a href="#">Delete</a>
-                </div>
+            <div class="animes" th:if="${!animes.isEmpty()}">
+                <div class="anime" th:each="currentAnime : ${animes}">
+                    <a href="#">
+                        <img th:src="${currentAnime.image}" th:alt="${currentAnime.name}">
+                    </a>
 
+                    <a href="#">
+                        <div class="delete">Delete</div>
+                    </a>
+
+                    <a href="#">
+                        <div class="edit">Edit</div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </main>
 
+<footer class="footer">Derechos reservados AnimeTracker</footer>
 
 </body>
 </html>
