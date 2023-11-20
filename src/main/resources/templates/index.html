@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AnimeTracker</title>
+</head>
+<body>
+<header>
+    <a th:href="@{api/v1/anime}">
+        <h1>AnimeTracker</h1>
+    </a>
+</header>
+
+<div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Search</a>
+        <a href="#">Setting</a>
+    </nav>
+</div>
+
+<main>
+    <div>
+        <div>
+            <h3>List of Animes</h3>
+
+            <div th:if="${animes == null}">
+                <p>Empty</p>
+            </div>
+
+            <div th:if="${!animes.isEmpty()}">
+                <div th:each="currentAnime : ${animes}">
+                    <img th:src="${currentAnime.image}" th:alt="${currentAnime.name}">
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+</body>
+</html>
