@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("api/v2/")
+@RequestMapping("/api/v2")
 public class AnimeController {
     @Autowired
     private AnimeService animeService;
@@ -34,7 +34,7 @@ public class AnimeController {
         return "index";
     }
 
-    @GetMapping("anime/{id}")
+    @GetMapping("/anime/{id}")
     public String element(@PathVariable long id, Model model) {
         Anime anime = animeService.getAnimeById(id);
         model.addAttribute("anime", anime);
@@ -42,7 +42,28 @@ public class AnimeController {
         return "anime";
     }
 
-    private void loadingInfo() {
+    @GetMapping("/anime/new")
+    public String formNew(Model model) {
+        model.addAttribute("anime", new Anime());
+        return "formNew";
+    }
 
+    @GetMapping("/anime/edit/{id}")
+    public String formEdit(@PathVariable long id, Model model) {
+        Anime anime = animeService.getAnimesById(id).get(0);
+        model.addAttribute("anime", anime);
+        return "formEdit";
+    }
+
+    @PostMapping("/anime/save")
+    public String save(Anime anime) {
+        animeService.add(anime);
+        return "redirect:/api/v2/";
+    }
+
+    @GetMapping("/anime/delete/{id}")
+    public String delete(@PathVariable long id) {
+        animeService.delete(id);
+        return "redirect:/api/v2/";
     }
 }

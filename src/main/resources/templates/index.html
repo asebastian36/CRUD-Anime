@@ -12,14 +12,14 @@
 </head>
 <body>
 <header>
-    <a th:href="@{api/v1/anime}">
+    <a th:href="@{/api/v2/}">
         <h1>AnimeTracker</h1>
     </a>
 </header>
 
 <div class="nav-bg">
     <nav class="navegacion">
-        <a class="navegacion__enlace" href="#">Add</a>
+        <a class="navegacion__enlace" th:href="@{anime/new}">New</a>
         <a class="navegacion__enlace" th:href="@{search}">Search</a>
     </nav>
 </div>
@@ -27,7 +27,7 @@
 <main class="contenedor">
     <div>
         <div>
-            <h3>List of Animes</h3>
+            <h2>List of Animes</h2>
 
             <div th:if="${animes == null}">
                 <p>Empty</p>
@@ -39,11 +39,11 @@
                         <img th:src="${currentAnime.image}" th:alt="${currentAnime.name}">
                     </a>
 
-                    <a href="#">
+                    <a th:href="@{anime/delete/} + ${currentAnime.idAnime}">
                         <div class="delete">Delete</div>
                     </a>
 
-                    <a href="#">
+                    <a th:href="@{anime/edit/} + ${currentAnime.idAnime}">
                         <div class="edit">Edit</div>
                     </a>
                 </div>
@@ -52,7 +52,9 @@
     </div>
 </main>
 
-<footer class="footer">Derechos reservados AnimeTracker</footer>
+<footer class="footer">
+    <p>Derechos reservados AnimeTracker</p>
+</footer>
 
 </body>
 </html>

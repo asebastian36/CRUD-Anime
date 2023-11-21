@@ -12,6 +12,10 @@ public class AnimeService {
     @Autowired
     private AnimeRepository repositorio;
 
+    public void edit(Anime anime) {
+        repositorio.save(anime);
+    }
+
     public List<Anime> getAll() {
         return repositorio.findAll();
     }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AnimeTracker</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Outfit:wght@400;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+</head>
+<body>
+<header>
+    <a th:href="@{/api/v2/}">
+        <h1>AnimeTracker</h1>
+    </a>
+</header>
+
+<div class="nav-bg">
+    <nav class="navegacion">
+        <a class="navegacion__enlace" th:href="@{anime/new}">New</a>
+        <a class="navegacion__enlace" th:href="@{search}">Search</a>
+    </nav>
+</div>
+
+<main class="contenedor">
+    <h2>New Anime</h2>
+
+    <form class="formulario" th:action="@{/api/v2/anime/save}" th:object="${anime}" method="post">
+        <fieldset>
+            <legend>Let's add an anime</legend>
+
+            <div class="contenedor-campos">
+
+                <div class="campo">
+                    <label>Name</label>
+                    <input class="input-text" type="text" th:field="*{name}" required>
+                </div>
+
+                <div class="campo">
+                    <label>Name Japanese</label>
+                    <input class="input-text" type="text" th:field="*{nameJapanese}" required>
+                </div>
+
+                <div class="campo">
+                    <label>Status</label>
+                    <input class="input-text" type="text" th:field="*{status}" required>
+                </div>
+
+                <div class="campo">
+                    <label>Image (URL)</label>
+                    <input class="input-text" type="text" th:field="*{image}" required>
+                </div>
+
+                <div class="campo">
+                    <label>Synopsis</label>
+                    <textarea class="input-text" th:field="*{synopsis}" required></textarea>
+                </div>
+            </div>
+
+            <div class="flex">
+                <input class="boton w-sm-100" type="submit" value="Save" />
+            </div>
+        </fieldset>
+    </form>
+
+    <div>
+        <h3>The importance of verifying information when registering an anime</h3>
+        <p>
+
+            When registering an anime, it is important to verify all of the information provided. This includes the anime's title, release date, genre, rating, and other relevant details. Failing to verify the information can lead to a number of problems, including:
+
+            Inaccurate information: If the information provided is inaccurate, it can lead to confusion and frustration for users. For example, if the release date is incorrect, users may not be able to find the anime when they are looking for it.
+            Duplicate entries: If the same anime is registered multiple times with different information, it can make it difficult to find the correct entry. This can be especially problematic if the anime has a common name or title.
+            Errors in the database: If the information provided is incorrect, it can lead to errors in the database. This can make it difficult to access the anime's information or to use the database for other purposes.
+
+            To verify the information provided, it is important to consult a variety of sources. This includes the anime's official website, social media pages, and other reliable sources. It is also important to be aware of common errors that are made when registering anime. For example, the release date is often incorrectly listed as the first airing date.
+
+            By taking the time to verify the information provided, you can help to ensure that the anime is registered accurately and that users have access to accurate information.
+        </p>
+    </div>
+
+    <br>
+    <br>
+</main>
+
+<footer class="footer">
+    <p>Derechos reservados AnimeTracker</p>
+</footer>
+
+</body>
+</html>
