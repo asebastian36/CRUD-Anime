@@ -1,10 +1,8 @@
 package com.api.crud.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import java.util.*;
 
 @Entity
 @Data
@@ -17,20 +15,17 @@ public class Genre {
     private long idGenre;
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "idAnime")
-    private Anime anime;
+    @OneToMany(mappedBy = "genre")
+    Set<GenreAnime> genreAnime;
 
-    public Genre(String name, Anime anime) {
+    public Genre(String name) {
         this.name = name;
-        this.anime = anime;
     }
 
     @Override
     public String toString() {
         return "Genre{" +
                 "idGenre=" + idGenre +
-                ", name='" + name + '\'' +
                 '}';
     }
 }

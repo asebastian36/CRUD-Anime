@@ -1,6 +1,6 @@
 package com.api.crud.service;
 
-import com.api.crud.model.Ending;
+import com.api.crud.model.*;
 import com.api.crud.repository.EndingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,10 @@ public class EndingService {
 
     public Ending add(Ending ending) {
         return repositorio.save(ending);
+    }
+
+    public List<Ending> findByAnime(Anime anime) {
+        return repositorio.findByAnime(anime);
     }
 
     public void delete(Long id) {

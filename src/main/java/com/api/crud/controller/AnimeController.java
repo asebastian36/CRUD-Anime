@@ -1,6 +1,7 @@
 package com.api.crud.controller;
 
 import com.api.crud.model.*;
+import com.api.crud.repository.GenreRepository;
 import com.api.crud.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("api/v2/anime")
+@RequestMapping("api/v2/")
 public class AnimeController {
     @Autowired
     private AnimeService animeService;
@@ -23,6 +24,9 @@ public class AnimeController {
     @Autowired
     private GenreService genreService;
 
+    @Autowired
+    private GenreRepository genreRepository;
+
     @GetMapping({"", "/", "index"})
     public String inicio(Model model) {
         List<Anime> animes = animeService.getAll();
@@ -30,12 +34,15 @@ public class AnimeController {
         return "index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("anime/{id}")
     public String element(@PathVariable long id, Model model) {
         Anime anime = animeService.getAnimeById(id);
         model.addAttribute("anime", anime);
 
-        //  ya se obtiene el anime, faltan op, end y genres
         return "anime";
+    }
+
+    private void loadingInfo() {
+
     }
 }

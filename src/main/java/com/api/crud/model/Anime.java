@@ -1,13 +1,8 @@
 package com.api.crud.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.HashSet;
-import java.util.Set;
+import lombok.*;
+import java.util.*;
 
 @Entity
 @Data
@@ -26,14 +21,14 @@ public class Anime {
     @Column(length = 1500)
     private String synopsis;
 
-    @OneToMany(mappedBy = "anime", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "anime")
     private Set<Opening> openings = new HashSet<>();
 
     @OneToMany(mappedBy = "anime")
     private Set<Ending> endings = new HashSet<>();
 
     @OneToMany(mappedBy = "anime")
-    private Set<Genre> genres = new HashSet<>();
+    private Set<GenreAnime> genreAnime = new HashSet<>();
 
     public Anime(String name, String status, String image, String nameJapanese, String synopsis) {
         this.name = name;
@@ -54,7 +49,7 @@ public class Anime {
                 ", synopsis='" + synopsis + '\'' +
                 ", openings=" + openings +
                 ", endings=" + endings +
-                ", genres=" + genres +
+                ", genres=" + genreAnime +
                 '}';
     }
 }

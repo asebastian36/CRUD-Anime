@@ -149,6 +149,12 @@ h3 {
     padding: 1rem;
 }
 
+.anime__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+}
+
 .delete {
     color: var(--blanco);
     background-color: var(--rojo);

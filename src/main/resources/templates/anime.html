@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${anime.name}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Outfit:wght@400;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
 </head>
 <body>
+    <header>
+        <a th:href="@{api/v1/anime}">
+            <h1>AnimeTracker</h1>
+        </a>
+    </header>
+
+    <div class="nav-bg">
+        <nav class="navegacion">
+            <a class="navegacion__enlace" href="#">Add</a>
+            <a class="navegacion__enlace" href="#">Search</a>
+        </nav>
+    </div>
+
+    <main class="contenedor">
+        <h2 th:text="${anime.name}"></h2>
+        <h2 class="nombreJapones" th:text="${anime.nameJapanese}"></h2>
+
+        <div class="anime__content">
+            <div>
+                <img th:src="${anime.image}" th:alt="'Image of ' + ${anime.name}">
+            </div>
+
+            <div>
+                <p th:text="${anime.synopsis}"></p>
+
+                <div th:each="genre : ${genres}">
+                    <a href="#" th:text="${genre.name}"></a>
+                </div>
+            </div>
+        </div>
+
+    </main>
 
 </body>
 </html>
