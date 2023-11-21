@@ -28,11 +28,18 @@
         <main class="contenedor">
             <h2>Edit an Anime</h2>
 
-            <form class="formulario" th:action="@{/api/v2/anime/save}" th:object="${anime}" method="post">
+            <div>
+                <label>IdAnime</label>
+                <p th:text="${anime.idAnime}"></p>
+            </div>
+
+            <form class="formulario" th:action="@{/api/v2/anime/edit}" th:object="${anime}" method="post">
                 <fieldset>
                     <legend>Let's edit an anime</legend>
 
                     <div class="contenedor-campos">
+
+
 
                         <div class="campo">
                             <label>Name</label>
@@ -57,6 +64,10 @@
                         <div class="campo">
                             <label>Synopsis</label>
                             <textarea class="input-text" th:field="*{synopsis}" required></textarea>
+                        </div>
+
+                        <div class="campo">
+                            <input type="hidden" th:field="*{idAnime}" id="idAnime"/>
                         </div>
                     </div>
 

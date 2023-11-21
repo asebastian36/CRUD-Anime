@@ -36,10 +36,26 @@
             <div>
                 <p th:text="${anime.synopsis}"></p>
 
+                <h4>Genres</h4>
                 <div th:each="genre : ${genres}">
-                    <a href="#" th:text="${genre.name}"></a>
+                    <a href="#" th:text="${genre.genre.name}"></a>
                 </div>
+
             </div>
+
+
+        </div>
+
+        <h3>Soundtrack</h3>
+
+        <h4>Openings</h4>
+        <div th:each="opening : ${openings}">
+            <a href="#" th:text="${opening.name}"></a>
+        </div>
+
+        <h4>Endings</h4>
+        <div th:each="ending : ${endings}">
+            <a href="#" th:text="${ending.name}"></a>
         </div>
 
     </main>

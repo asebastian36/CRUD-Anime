@@ -4,7 +4,6 @@ import com.api.crud.model.Anime;
 import com.api.crud.repository.AnimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -12,7 +11,8 @@ public class AnimeService {
     @Autowired
     private AnimeRepository repositorio;
 
-    public void edit(Anime anime) {
+    public void update(Anime anime) {
+        System.out.println(anime.getIdAnime());
         repositorio.save(anime);
     }
 
@@ -20,8 +20,8 @@ public class AnimeService {
         return repositorio.findAll();
     }
 
-    public Anime add(Anime anime) {
-        return repositorio.save(anime);
+    public void add(Anime anime) {
+        repositorio.save(anime);
     }
 
     public void delete(Long id) {
@@ -35,5 +35,9 @@ public class AnimeService {
     public Anime getAnimeById(Long id) {
         List<Anime> animes = repositorio.findById(id).stream().toList();
         return animes.get(0);
+    }
+
+    private boolean validation(Anime anime) {
+        return repositorio.existsById(anime.getIdAnime());
     }
 }

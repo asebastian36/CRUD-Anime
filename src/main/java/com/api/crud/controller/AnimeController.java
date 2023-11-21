@@ -22,13 +22,14 @@ public class AnimeController {
     private EndingService endingService;
 
     @Autowired
-    private GenreService genreService;
+    private GenreAnimeService genreAnimeService;
 
     @Autowired
-    private GenreRepository genreRepository;
+    private GenreService genreService;
 
     @GetMapping({"", "/", "index"})
     public String inicio(Model model) {
+        loadingInfo();
         List<Anime> animes = animeService.getAll();
         model.addAttribute("animes", animes);
         return "index";
@@ -38,7 +39,9 @@ public class AnimeController {
     public String element(@PathVariable long id, Model model) {
         Anime anime = animeService.getAnimeById(id);
         model.addAttribute("anime", anime);
-
+        model.addAttribute("openings", openingService.findByAnime(anime));
+        model.addAttribute("endings", endingService.findByAnime(anime));
+        model.addAttribute("genres", genreAnimeService.findByAnime(anime));
         return "anime";
     }
 
@@ -50,9 +53,15 @@ public class AnimeController {
 
     @GetMapping("/anime/edit/{id}")
     public String formEdit(@PathVariable long id, Model model) {
-        Anime anime = animeService.getAnimesById(id).get(0);
+        Anime anime = animeService.getAnimeById(id);
         model.addAttribute("anime", anime);
         return "formEdit";
+    }
+
+    @PostMapping("/anime/edit")
+    public String edit(Anime anime) {
+        animeService.update(anime);
+        return "redirect:/api/v2/";
     }
 
     @PostMapping("/anime/save")
@@ -65,5 +74,9 @@ public class AnimeController {
     public String delete(@PathVariable long id) {
         animeService.delete(id);
         return "redirect:/api/v2/";
+    }
+
+    private void loadingInfo() {
+
     }
 }

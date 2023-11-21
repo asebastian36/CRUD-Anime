@@ -26,6 +26,7 @@ public class Genre {
     public String toString() {
         return "Genre{" +
                 "idGenre=" + idGenre +
+                "name=" + name +
                 '}';
     }
 }
