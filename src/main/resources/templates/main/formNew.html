@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{template/base :: head}">
+    </head>
+
+    <body>
+        <header th:replace="~{template/base :: header}">
+        </header>
+
+        <div th:replace="~{template/base :: nav}"></div>
+
+        <main class="contenedor">
+            <h2>New Anime</h2>
+            <form th:replace="~{template/formAnime :: formSave}"></form>
+            <div>
+                <h3>Please verify the information before adding an anime</h3>
+                <p>
+                    Make sure the information you provide is accurate and up-to-date.
+                    This includes the anime's title, release date, genre, and rating.
+                    You can find this information on the anime's website or on a reputable anime database.
+                </p>
+            </div>
+        </main>
+
+        <footer th:replace="~{template/base :: footer}">
+        </footer>
+    </body>
+</html>

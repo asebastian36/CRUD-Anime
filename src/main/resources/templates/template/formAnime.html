@@ -1,0 +1,89 @@
+ <form class="formulario" th:action="@{/api/v2/anime/save}" th:object="${anime}" method="post" th:fragment="formSave">
+            <fieldset>
+                <legend>Let's add an anime</legend>
+
+                <div class="contenedor-campos">
+
+                    <div class="campo">
+                        <label>Name</label>
+                        <input class="input-text" type="text" th:field="*{name}" required>
+                    </div>
+
+                    <div class="campo">
+                        <label>Name Japanese</label>
+                        <input class="input-text" type="text" th:field="*{nameJapanese}" required>
+                    </div>
+
+                    <div class="campo">
+                        <label>Status</label>
+                        <input class="input-text" type="text" th:field="*{status}" required>
+                    </div>
+
+                    <div class="campo">
+                        <label>Image (URL)</label>
+                        <input class="input-text" type="text" th:field="*{image}" required>
+                    </div>
+
+                    <div class="campo">
+                        <label>Synopsis</label>
+                        <textarea class="input-text" th:field="*{synopsis}" required></textarea>
+                    </div>
+
+                    <div class="campo">
+                        <input type="hidden" th:field="*{idAnime}" id="idAnime"/>
+                    </div>
+                </div>
+
+                <div class="flex">
+                    <input class="boton w-sm-100" type="submit" value="Save" />
+                </div>
+            </fieldset>
+        </form>
+    </main>
+
+    <main class="contenedor" th:fragment="formEdit">
+            <h2>Edit an Anime</h2>
+
+            <form class="formulario" th:action="@{/api/v2/anime/edit}" th:object="${anime}" method="post">
+                <fieldset>
+                    <legend>Let's edit an anime</legend>
+
+                    <div class="contenedor-campos">
+                        <div class="campo">
+                            <label>Name</label>
+                            <input class="input-text" type="text" th:field="*{name}" required>
+                        </div>
+
+                        <div class="campo">
+                            <label>Name Japanese</label>
+                            <input class="input-text" type="text" th:field="*{nameJapanese}" required>
+                        </div>
+
+                        <div class="campo">
+                            <label>Status</label>
+                            <input class="input-text" type="text" th:field="*{status}" required>
+                        </div>
+
+                        <div class="campo">
+                            <label>Image (URL)</label>
+                            <input class="input-text" type="text" th:field="*{image}" required>
+                        </div>
+
+                        <div class="campo">
+                            <label>Synopsis</label>
+                            <textarea class="input-text" th:field="*{synopsis}" required></textarea>
+                        </div>
+
+                        <div class="campo">
+                            <input type="hidden" th:field="*{idAnime}" id="idAnime"/>
+                        </div>
+                    </div>
+
+                    <div class="flex">
+                        <input class="boton w-sm-100" type="submit" value="Save" />
+                    </div>
+                </fieldset>
+            </form>
+
+
+    </main>

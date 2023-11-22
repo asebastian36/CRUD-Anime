@@ -37,6 +37,10 @@ public class AnimeService {
         return animes.get(0);
     }
 
+    public List<Anime> findByName(String name) {
+        return repositorio.findByName(name);
+    }
+
     private boolean validation(Anime anime) {
         return repositorio.existsById(anime.getIdAnime());
     }

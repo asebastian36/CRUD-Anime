@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{template/base :: head}">
+    </head>
+
+    <body>
+        <header th:replace="~{template/base :: header}">
+        </header>
+
+        <div th:replace="~{template/base :: nav}"></div>
+
+        <main class="contenedor">
+            <h2>Edit an Anime</h2>
+            <form th:replace="~{template/formAnime :: formSave}"></form>
+            <div>
+                <h3>It's important to keep anime information up-to-date</h3>
+                <p>
+                    Anime information can change over time. For example, the release date of an anime may be delayed, or a new season of an anime may be announced. It's important to keep the information on your website up-to-date to provide accurate information to your users.
+                </p>
+            </div>
+        </main>
+
+        <footer th:replace="~{template/base :: footer}">
+        </footer>
+    </body>
+</html>

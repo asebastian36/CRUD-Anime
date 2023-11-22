@@ -10,6 +10,9 @@
     --negro: #332A2B;
 
     --fuentePrincipal: 'Outfit';
+
+    --alto: 495px;
+    --ancho: 342px;
 }
 
 html {
@@ -32,8 +35,15 @@ body {
 
 .contenedor {
     /* centrar contenido */
-    max-width: 120rem;
+    max-width: 30rem;
     margin: 0 auto;
+}
+
+@media (min-width: 468px) {
+    .contenedor {
+        max-width: 60rem;
+        margin: 0 auto;
+    }
 }
 
 @media (min-width: 768px) {
@@ -66,6 +76,7 @@ body {
 
 .boton:hover {
     cursor: pointer;
+    background-color: var(--primario);
 }
 
 p {
@@ -79,7 +90,12 @@ a {
 }
 
 img {
-    width: 90%
+    /* alto */
+    height: var(--alto);
+
+    /* ancho */
+    width: var(--ancho);
+
 }
 
 h1,
@@ -180,11 +196,19 @@ h3 {
 /* animes de index y listado */
 .animes {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
 }
 
+
 @media (min-width: 768px) {
+    .animes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+    }
+}
+
+@media (min-width: 1200px) {
     .animes {
         grid-template-columns: repeat(3, 1fr);
         gap: 0;
@@ -202,7 +226,8 @@ h3 {
 }
 
 .delete,
-.edit {
+.edit,
+.search {
     color: var(--blanco);
     padding: 1rem 3rem;
     margin-top: 1rem;
@@ -217,6 +242,14 @@ h3 {
     background-color: var(--cafeOscuro);
     justify-content: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.delete:hover {
+    background-color: var(--rojo);
+}
+
+.edit:hover {
+    background-color: var(--primario);
 }
 
 /* formularios */
@@ -292,5 +325,6 @@ h3 {
 
 .footer p {
     text-align: center;
+    font-weight: bold;
     color: var(--blanco);
 }

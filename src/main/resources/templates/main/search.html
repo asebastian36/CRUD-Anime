@@ -26,29 +26,31 @@
 
 <main class="contenedor">
     <div>
-        <div>
-            <h2>List of Animes</h2>
+        <h2>Search</h2>
 
-            <div th:if="${animes == null}">
-                <p>Empty</p>
-            </div>
+        <form class="formulario" th:action="@{/api/v2/anime/send}" method="post">
+            <fieldset>
+                <legend>Let's search an anime</legend>
 
-            <div class="animes" th:if="${!animes.isEmpty()}">
-                <div class="anime" th:each="currentAnime : ${animes}">
-                    <a th:href="@{anime/} + ${currentAnime.idAnime}">
-                        <img th:src="${currentAnime.image}" th:alt="${currentAnime.name}">
-                    </a>
+                <div class="contenedor-campos">
 
-                    <a th:href="@{anime/delete/} + ${currentAnime.idAnime}">
-                        <div class="delete">Delete</div>
-                    </a>
-
-                    <a th:href="@{anime/edit/} + ${currentAnime.idAnime}">
-                        <div class="edit">Edit</div>
-                    </a>
+                    <div class="campo">
+                        <label>Name</label>
+                        <input class="input-text" type="text" required>
+                    </div>
                 </div>
-            </div>
-        </div>
+
+                <div class="flex">
+                    <input class="boton w-sm-100" type="submit" value="Search" />
+                </div>
+            </fieldset>
+        </form>
+
+        <h2>Search by genre</h2>
+
+        <a href="" th:each="genre : ${genres}">
+            <div class="search" th:text="${genre.name}"></div>
+        </a>
     </div>
 </main>
 

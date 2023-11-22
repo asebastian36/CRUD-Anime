@@ -1,7 +1,6 @@
 package com.api.crud.controller;
 
 import com.api.crud.model.*;
-import com.api.crud.repository.GenreRepository;
 import com.api.crud.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,7 @@ public class AnimeController {
         loadingInfo();
         List<Anime> animes = animeService.getAll();
         model.addAttribute("animes", animes);
-        return "index";
+        return "main/index";
     }
 
     @GetMapping("/anime/{id}")
@@ -42,20 +41,32 @@ public class AnimeController {
         model.addAttribute("openings", openingService.findByAnime(anime));
         model.addAttribute("endings", endingService.findByAnime(anime));
         model.addAttribute("genres", genreAnimeService.findByAnime(anime));
-        return "anime";
+        return "main/anime";
     }
 
     @GetMapping("/anime/new")
     public String formNew(Model model) {
         model.addAttribute("anime", new Anime());
-        return "formNew";
+        return "main/formNew";
     }
 
     @GetMapping("/anime/edit/{id}")
     public String formEdit(@PathVariable long id, Model model) {
         Anime anime = animeService.getAnimeById(id);
         model.addAttribute("anime", anime);
-        return "formEdit";
+        return "main/formEdit";
+    }
+
+    @GetMapping("/anime/search")
+    public String formSearch(Model model) {
+        model.addAttribute("genres", genreService.getAll());
+        return "main/search";
+    }
+
+    @PostMapping("/anime/send")
+    public String search(String name, Model model) {
+        model.addAttribute("animes", animeService.findByName(name));
+        return "main/resultado";
     }
 
     @PostMapping("/anime/edit")
