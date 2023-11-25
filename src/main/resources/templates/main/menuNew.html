@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{template/base :: head}">
+  </head>
+  <body>
+    <header th:replace="~{template/base :: header}">
+    </header>
+
+    <div th:replace="~{template/base :: nav}"></div>
+
+    <main class="contenedor">
+      <h2>Menu New</h2>
+
+      <div class="flex genres">
+          <div>
+            <a class="boton genre" th:href="@{new/anime}">Add an Anime</a>
+          </div>
+
+          <div>
+            <a class="boton genre" th:href="@{new/opening}">Add opening</a>
+          </div>
+
+          <div>
+            <a class="boton genre" th:href="@{new/ending}">Add ending</a>
+          </div>
+
+          <div>
+            <a class="boton genre" th:href="@{new/genre}">Add Genre</a>
+          </div>
+
+          <div>
+            <a class="boton genre" th:href="@{new/genreAnime}">Add Relation</a>
+          </div>
+      </div>
+
+    </main>
+
+    <footer th:replace="~{template/base :: footer}">
+    </footer>
+  </body>
+</html>

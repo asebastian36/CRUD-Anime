@@ -12,15 +12,15 @@
 </head>
 <body>
 <header th:fragment="header">
-    <a th:href="@{/api/v2/}">
+    <a th:href="@{/animeTracker/}">
         <h1>AnimeTracker</h1>
     </a>
 </header>
 
 <div class="nav-bg" th:fragment="nav">
     <nav class="navegacion">
-        <a class="navegacion__enlace" th:href="@{anime/new}">New</a>
-        <a class="navegacion__enlace" th:href="@{anime/search}">Search</a>
+        <a class="navegacion__enlace" th:href="@{/animeTracker/new}">New</a>
+        <a class="navegacion__enlace" th:href="@{/animeTracker/anime/search}">Search</a>
     </nav>
 </div>
 
@@ -34,15 +34,15 @@
 
         <div class="animes" th:if="${!animes.isEmpty()}">
             <div class="anime" th:each="currentAnime : ${animes}">
-                <a th:href="@{anime/} + ${currentAnime.idAnime}">
+                <a th:href="@{/animeTracker/anime/} + ${currentAnime.idAnime}">
                     <img th:src="${currentAnime.image}" th:alt="${currentAnime.name}">
                 </a>
 
-                <a th:href="@{anime/delete/} + ${currentAnime.idAnime}">
+                <a th:href="@{/animeTracker/anime/delete/} + ${currentAnime.idAnime}">
                     <div class="delete">Delete</div>
                 </a>
 
-                <a th:href="@{anime/edit/} + ${currentAnime.idAnime}">
+                <a th:href="@{/animeTracker/anime/edit/} + ${currentAnime.idAnime}">
                     <div class="edit">Edit</div>
                 </a>
             </div>

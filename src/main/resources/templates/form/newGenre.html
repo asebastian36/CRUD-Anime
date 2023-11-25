@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{template/base :: head}">
+  </head>
+  <body>
+    <header th:replace="~{template/base :: header}">
+    </header>
+
+    <div th:replace="~{template/base :: nav}">
+    </div>
+
+    <main class="contenedor">
+        <form class="formulario" th:action="@{/animeTracker/genre/save}" th:object="${genre}" method="post">
+          <fieldset>
+            <legend>Let's add a Genre</legend>
+
+            <div class="contenedor-campos">
+
+              <div class="campo">
+                <label>Name</label>
+                <input class="input-text" type="text" th:field="*{name}" required>
+              </div>
+
+              <div class="campo">
+                <input type="hidden" th:field="*{idGenre}" id="idAnime"/>
+              </div>
+            </div>
+
+            <div class="flex">
+              <input class="boton w-sm-100" type="submit" value="Save" />
+            </div>
+          </fieldset>
+        </form>
+    </main>
+
+    <footer th:replace="~{template/base :: footer}">
+    </footer>
+  </body>
+</html>

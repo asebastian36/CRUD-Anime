@@ -38,7 +38,8 @@ public class AnimeService {
     }
 
     public List<Anime> findByName(String name) {
-        return repositorio.findByName(name);
+        String newName = "%" + name + "%";
+        return repositorio.findByName(newName);
     }
 
     private boolean validation(Anime anime) {

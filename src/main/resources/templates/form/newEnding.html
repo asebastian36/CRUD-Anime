@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{template/base :: head}">
+    </head>
+    <body>
+        <header th:replace="~{template/base :: header}">
+        </header>
+
+        <div th:replace="~{template/base :: nav}">
+        </div>
+
+        <main class="contenedor">
+            <h2>New Ending</h2>
+
+            <form class="formulario" th:action="@{/animeTracker/ending/save}" method="post">
+                <fieldset>
+                    <legend>Let's add a ending at anime</legend>
+
+                    <div class="contenedor-campos">
+
+                        <div class="campo">
+                            <label>Ending</label>
+                            <input class="input-text" type="text" name="name" placeholder="Name, num or description" required>
+                        </div>
+
+                        <div class="campo">
+                            <label>Anime</label>
+                            <select type="number" name="anime" required>
+                                <option value="empty">empty</option>
+                                <div th:each="anime : ${animes}">
+                                    <option th:value="${anime.idAnime}" th:text="${anime.name}"></option>
+                                </div>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="flex">
+                        <input class="boton w-sm-100" type="submit" value="Save" />
+                    </div>
+
+                </fieldset>
+            </form>
+
+            <div>
+                <h3>Important</h3>
+                <p>
+                    Anime endings are short songs and animations that play at the end of anime episodes. They are typically slower and more reflective than openings, and they often feature emotional lyrics and melodies.
+
+                    Endings typically reflect on the themes and events of the episode that has just aired, and they can help to leave viewers with a lasting impression. They can also be used to promote a series outside of Japan, and they can help to introduce new fans to the world of anime.
+                </p>
+            </div>
+        </main>
+
+        <footer th:replace="~{template/base :: footer}">
+        </footer>
+    </body>
+</html>

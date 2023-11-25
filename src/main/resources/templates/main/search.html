@@ -1,62 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>AnimeTracker</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Outfit:wght@400;700&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
-</head>
-<body>
-<header>
-    <a th:href="@{/api/v2/}">
-        <h1>AnimeTracker</h1>
-    </a>
-</header>
+    <head th:replace="~{template/base :: head}">
+    </head>
+    <body>
+        <header th:replace="~{template/base :: header}">
+        </header>
 
-<div class="nav-bg">
-    <nav class="navegacion">
-        <a class="navegacion__enlace" th:href="@{anime/new}">New</a>
-        <a class="navegacion__enlace" th:href="@{search}">Search</a>
-    </nav>
-</div>
+        <div th:replace="~{template/base :: nav}"></div>
 
-<main class="contenedor">
-    <div>
-        <h2>Search</h2>
+        <main class="contenedor">
+            <div>
+                <h2>Search</h2>
 
-        <form class="formulario" th:action="@{/api/v2/anime/send}" method="post">
-            <fieldset>
-                <legend>Let's search an anime</legend>
+                <form class="formulario" th:action="@{/animeTracker/anime/send}" method="post">
+                    <fieldset>
+                        <legend>Let's search an anime</legend>
 
-                <div class="contenedor-campos">
+                        <div class="contenedor-campos">
 
-                    <div class="campo">
-                        <label>Name</label>
-                        <input class="input-text" type="text" required>
-                    </div>
+                            <div class="campo">
+                                <label>Name</label>
+                                <input class="input-text" type="text" name="name" required>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <input class="boton w-sm-100" type="submit" value="Search" />
+                        </div>
+                    </fieldset>
+                </form>
+
+                <h2>Search by genre</h2>
+
+                <div class="genres" th:each="genre : ${genres}">
+                    <a class="genre" th:href="@{/animeTracker/anime/animesByGenre/} + ${genre.idGenre}" >
+                        <div class="boton" th:text="${genre.name}"></div>
+                    </a>
                 </div>
 
-                <div class="flex">
-                    <input class="boton w-sm-100" type="submit" value="Search" />
-                </div>
-            </fieldset>
-        </form>
+            </div>
+        </main>
 
-        <h2>Search by genre</h2>
+        <footer th:replace="~{template/base :: footer}">
+        </footer>
 
-        <a href="" th:each="genre : ${genres}">
-            <div class="search" th:text="${genre.name}"></div>
-        </a>
-    </div>
-</main>
-
-<footer class="footer">
-    <p>Derechos reservados AnimeTracker</p>
-</footer>
-
-</body>
+    </body>
 </html>

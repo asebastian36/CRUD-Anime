@@ -1,64 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title th:text="${anime.name}"></title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Outfit:wght@400;700&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
-</head>
-<body>
-    <header>
-        <a th:href="@{api/v1/anime}">
-            <h1>AnimeTracker</h1>
-        </a>
-    </header>
+    <head th:replace="template/base :: head">
+    </head>
+    <body>
+        <header th:replace="template/base :: header">
+        </header>
 
-    <div class="nav-bg">
-        <nav class="navegacion">
-            <a class="navegacion__enlace" href="#">Add</a>
-            <a class="navegacion__enlace" href="#">Search</a>
-        </nav>
-    </div>
+        <div th:replace="template/base :: nav">
+        </div>
 
-    <main class="contenedor">
-        <h2 th:text="${anime.name}"></h2>
-        <h2 class="nombreJapones" th:text="${anime.nameJapanese}"></h2>
+        <main class="contenedor">
+            <h2 th:text="${anime.name}"></h2>
+            <h2 class="nombreJapones" th:text="${anime.nameJapanese}"></h2>
 
-        <div class="anime__content">
-            <div>
-                <img th:src="${anime.image}" th:alt="'Image of ' + ${anime.name}">
+            <div class="anime__info">
+                <div>
+                    <img th:src="${anime.image}" th:alt="'Image of ' + ${anime.name}">
+                </div>
+
+                <div>
+                    <p th:text="${anime.synopsis}"></p>
+
+                    <div th:each="genre : ${genres}">
+                        <a href="#" th:text="${genre.genre.name}"></a>
+                    </div>
+
+                </div>
+
+
             </div>
 
-            <div>
-                <p th:text="${anime.synopsis}"></p>
+            <h3>Soundtrack</h3>
 
-                <h4>Genres</h4>
-                <div th:each="genre : ${genres}">
-                    <a href="#" th:text="${genre.genre.name}"></a>
+            <div class="anime__soundtrack">
+
+                <div>
+                    <h3>Openings</h3>
+
+                    <div th:each="opening : ${openings}">
+                        <p th:text="${opening.name}"></p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Endings</h3>
+
+                    <div th:each="ending : ${endings}">
+                        <p th:text="${ending.name}"></p>
+                    </div>
                 </div>
 
             </div>
 
 
-        </div>
+        </main>
 
-        <h3>Soundtrack</h3>
-
-        <h4>Openings</h4>
-        <div th:each="opening : ${openings}">
-            <a href="#" th:text="${opening.name}"></a>
-        </div>
-
-        <h4>Endings</h4>
-        <div th:each="ending : ${endings}">
-            <a href="#" th:text="${ending.name}"></a>
-        </div>
-
-    </main>
-
-</body>
+        <footer th:replace="template/base :: footer">
+        </footer>
+    </body>
 </html>

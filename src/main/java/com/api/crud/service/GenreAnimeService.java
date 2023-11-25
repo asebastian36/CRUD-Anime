@@ -1,7 +1,6 @@
 package com.api.crud.service;
 
-import com.api.crud.model.Anime;
-import com.api.crud.model.GenreAnime;
+import com.api.crud.model.*;
 import com.api.crud.repository.GenreAnimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +30,9 @@ public class GenreAnimeService {
 
     public List<GenreAnime> findByAnime(Anime anime) {
         return repositorio.findByAnime(anime);
+    }
+
+    public List<GenreAnime> findByGenre(Genre genre) {
+        return repositorio.findByGenre(genre).stream().toList();
     }
 }
